@@ -1,14 +1,38 @@
+scalar Locale
+
 type Query{
 	firstQuery : String
 	fullName(firstName : String, secondName : String) : String
 	getCustomerById(email : String) : Customer
 	getAllCustomers :	[Customer]
+	getAllProducts	:	[Product]
 }
 
 type Mutation{
 	updateFirstName(customerFirstName:String,customerEmail:String!)	:	Customer
 }
 
+type Product{
+	id: String!
+	key: String
+	productType: ProductTypeDefinition
+	masterData: ProductCatalogData
+}
+
+type ProductCatalogData{
+current: ProductData
+staged: ProductData
+}
+
+type ProductData{
+name(locale: Locale, acceptLanguage: [Locale]): String
+}
+
+
+type ProductTypeDefinition{
+id: String
+
+}
 
 type Customer{
 	id	:	String
@@ -19,7 +43,7 @@ type Customer{
 	password	:	String
 	addresses: [Address!]!
 }
-
+ 
 type Address{
 country: String!
 id: String

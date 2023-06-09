@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 
 import com.GraphQl.Dao.CustomerDao;
 import com.GraphQl.Service.CustomerService;
+import com.GraphQl.Service.ProductService;
 import com.commercetools.api.models.customer.Customer;
+import com.commercetools.api.models.product.Product;
 
 @Controller
 public class GraphQlController {
@@ -21,6 +23,9 @@ public class GraphQlController {
 	
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private ProductService productService;
 
 	@QueryMapping
 	public String firstQuery() {
@@ -51,5 +56,10 @@ public class GraphQlController {
 	@MutationMapping
 	public Customer updateFirstName(@Argument String customerEmail,@Argument String customerFirstName) {
 		return customerService.updateFirstName(customerEmail, customerFirstName);
+	}
+	
+	@QueryMapping
+	public List<Product> getAllProducts(){
+		return productService.getAllProducts();
 	}
 }
