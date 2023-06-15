@@ -1,4 +1,5 @@
 scalar Locale
+scalar LocalizedString
 
 
 type Query{
@@ -26,7 +27,7 @@ staged: ProductData
 }
 
 type ProductData{
-name(locale: Locale, acceptLanguage: [Locale]): Locale
+name (locale:String): LocalizedString
 }
 
 
